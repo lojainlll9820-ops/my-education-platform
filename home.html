@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>نمط</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f0e7ff, #d9c2f3, #c4a5e5);
+            color: #4c3565;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: auto;
+            padding: 45px 35px 70px;
+        }
+
+        /* زر اللغة */
+
+        .language-switch {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            z-index: 10;
+        }
+
+        .language-switch button {
+            border: none;
+            background: white;
+            color: #684094;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(82, 48, 120, 0.12);
+            transition: 0.2s;
+        }
+
+        .language-switch button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* الترحيب */
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .welcome h1 {
+            margin: 0;
+            font-size: 52px;
+            color: #56347d;
+        }
+
+        .welcome p {
+            margin-top: 12px;
+            font-size: 20px;
+            color: #76598f;
+        }
+
+        /* المساعد الذكي */
+
+        .assistant {
+            background: linear-gradient(135deg, #684094, #9366bd);
+            color: white;
+            border-radius: 35px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 18px 40px rgba(82, 48, 120, 0.25);
+            margin-bottom: 45px;
+        }
+
+        .assistant-icon {
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.20);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 45px;
+        }
+
+        .assistant h2 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .assistant p {
+            max-width: 680px;
+            margin: 15px auto 25px;
+            font-size: 18px;
+            line-height: 1.9;
+        }
+
+        .assistant-button {
+            display: inline-block;
+            text-decoration: none;
+            background: white;
+            color: #7952a8;
+            padding: 13px 25px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        /* عنوان الأقسام */
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title h2 {
+            margin: 0;
+            color: #56347d;
+            font-size: 31px;
+        }
+
+        .section-title p {
+            margin-top: 10px;
+            color: #76598f;
+        }
+
+        /* أنماط التعلم */
+
+        .styles-box {
+            background: rgba(255,255,255,0.62);
+            border-radius: 35px;
+            padding: 35px;
+            margin-bottom: 50px;
+            box-shadow: 0 12px 30px rgba(82,48,120,0.10);
+        }
+
+        .style-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .style-card {
+            text-decoration: none;
+            min-height: 180px;
+            border-radius: 27px;
+            padding: 25px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.25s;
+            border: 3px solid transparent;
+            display: block;
+        }
+
+        .style-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .style-card.selected {
+            border-color: #70459b;
+            box-shadow: 0 8px 20px rgba(91,52,125,0.20);
+            transform: translateY(-5px);
+        }
+
+        .visual {
+            background: #e7d8ff;
+        }
+
+        .audio {
+            background: #d9c9f4;
+        }
+
+        .kinetic {
+            background: #cdb6e9;
+        }
+
+        .reading {
+            background: #eee5ff;
+        }
+
+        .style-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .style-card h3 {
+            margin: 0 0 9px;
+            color: #57377b;
+            font-size: 22px;
+        }
+
+        .style-card p {
+            margin: 0;
+            color: #755b8d;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* أقسام المنصة */
+
+        .platform-title {
+            text-align: center;
+            color: #56347d;
+            font-size: 31px;
+            margin-bottom: 25px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .platform-card,
+        .card {
+            min-height: 190px;
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 12px 28px rgba(82,48,120,0.13);
+            transition: 0.25s;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .platform-card:hover,
+        .card:hover {
+            transform: translateY(-6px);
+        }
+
+        .card-one {
+            background: #e3d1fa;
+        }
+
+        .card-two {
+            background: #d3bde9;
+        }
+
+        .card-three {
+            background: #c5a9df;
+        }
+
+        .card-four {
+            background: #eee4ff;
+        }
+
+        .card-icon {
+            font-size: 42px;
+        }
+
+        .card h3 {
+            color: #553476;
+            font-size: 24px;
+            margin: 14px 0 9px;
+        }
+
+        .card p {
+            color: #70558a;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* زخارف */
+
+        .bubble {
+            position: fixed;
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bubble-one {
+            width: 230px;
+            height: 230px;
+            background: rgba(255,255,255,0.22);
+            top: -80px;
+            right: -70px;
+        }
+
+        .bubble-two {
+            width: 180px;
+            height: 180px;
+            background: rgba(112,69,155,0.10);
+            bottom: -60px;
+            left: -50px;
+        }
+
+        .bubble-three {
+            width: 65px;
+            height: 65px;
+            background: rgba(255,255,255,0.25);
+            top: 45%;
+            left: 5%;
+        }
+
+        /* الجوال */
+
+        @media (max-width: 800px) {
+
+            .page {
+                padding: 30px 18px 50px;
+            }
+
+            .welcome h1 {
+                font-size: 40px;
+            }
+
+            .welcome p {
+                font-size: 17px;
+            }
+
+            .style-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .assistant {
+                padding: 32px 20px;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            .style-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .styles-box {
+                padding: 22px;
+            }
+
+            .language-switch {
+                right: 15px;
+                top: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- زر تغيير اللغة -->
+
+    <div class="language-switch">
+        <button id="languageButton" onclick="toggleLanguage()">
+            🌐 English
+        </button>
+    </div>
+
+
+    <!-- زخارف الخلفية -->
+
+    <div class="bubble bubble-one"></div>
+    <div class="bubble bubble-two"></div>
+    <div class="bubble bubble-three"></div>
+
+
+    <main class="page">
+
+        <!-- الترحيب -->
+
+        <section class="welcome">
+
+            <h1 id="welcomeTitle">
+                مرحبًا بك في نمط 👋
+            </h1>
+
+            <p id="welcomeText">
+                تعلّم بالطريقة التي تناسبك، ونمّي مهاراتك خطوة بخطوة 💜
+            </p>
+
+        </section>
+
+
+        <!-- المساعد الذكي -->
+
+        <section class="assistant">
+
+            <div class="assistant-icon">
+                🤖
+            </div>
+
+            <h2 id="assistantTitle">
+                أنا مساعدك الذكي
+            </h2>
+
+            <p id="assistantText">
+                لن أعطيك الإجابة مباشرة،
+                بل سأشرح لك وأطرح عليك الأسئلة وأعطيك التلميحات
+                حتى تصل إلى الحل بنفسك.
+            </p>
+
+            <a href="assistant.html" class="assistant-button" id="assistantButton">
+                ابدأ المحادثة
+            </a>
+
+        </section>
+
+
+        <!-- أنماط التعلم -->
+
+        <section class="styles-box">
+
+            <div class="section-title">
+
+                <h2 id="stylesTitle">
+                    🎨 اختر نمط تعلّمك
+                </h2>
+
+                <p id="stylesText">
+                    اختر الطريقة التي تساعدك على الفهم بشكل أفضل
+                </p>
+
+            </div>
+
+
+            <div class="style-grid">
+
+
+                <!-- بصري -->
+
+                <a href="visua.html" class="style-card visual">
+
+                    <div class="style-icon">
+                        👁️
+                    </div>
+
+                    <h3 id="visualTitle">
+                        بصري
+                    </h3>
+
+                    <p id="visualText">
+                        أتعلم من خلال الصور
+                        والمخططات والألوان
+                    </p>
+
+                </a>
+
+
+                <!-- سمعي -->
+
+                <a href="audio.html" class="style-card audio">
+
+                    <div class="style-icon">
+                        👂
+                    </div>
+
+                    <h3 id="audioTitle">
+                        سمعي
+                    </h3>
+
+                    <p id="audioText">
+                        أتعلم من خلال الشرح
+                        والاستماع
+                    </p>
+
+                </a>
+
+
+                <!-- حركي -->
+
+                <a href="kinetic.html" class="style-card kinetic">
+
+                    <div class="style-icon">
+                        ✋
+                    </div>
+
+                    <h3 id="kineticTitle">
+                        حركي
+                    </h3>
+
+                    <p id="kineticText">
+                        أتعلم من خلال التجربة
+                        والتطبيق
+                    </p>
+
+                </a>
+
+
+                <!-- قرائي -->
+
+                <a href="reading.html" class="style-card reading">
+
+                    <div class="style-icon">
+                        📖
+                    </div>
+
+                    <h3 id="readingTitle">
+                        قرائي / كتابي
+                    </h3>
+
+                    <p id="readingText">
+                        أتعلم من خلال القراءة
+                        والكتابة
+                    </p>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- أقسام المنصة -->
+
+        <h2 class="platform-title" id="platformTitle">
+            ماذا تريد أن تفعل اليوم؟ ✨
+        </h2>
+
+
+        <section class="cards">
+
+
+            <!-- المواد الدراسية -->
+
+            <a href="subjects.html" class="platform-card card-one">
+
+                <div class="card-icon">
+                    📚
+                </div>
+
+                <h3 id="subjectsTitle">
+                    المواد الدراسية
+                </h3>
+
+                <p id="subjectsText">
+                    اختر المادة التي تريد تعلمها
+                    وابدأ رحلتك التعليمية.
+                </p>
+
+            </a>
+
+
+            <!-- التدريب -->
+
+            <a href="training.html" class="card card-two">
+
+                <div class="card-icon">
+                    📝
+                </div>
+
+                <h3 id="trainingTitle">
+                    التدريب والتمارين
+                </h3>
+
+                <p id="trainingText">
+                    تدرب على الأسئلة وطوّر فهمك
+                    خطوة بخطوة.
+                </p>
+
+            </a>
+
+
+            <!-- الاختبار -->
+
+            <a href="quiz.html" class="card card-three">
+
+                <div class="card-icon">
+                    🎯
+                </div>
+
+                <h3 id="quizTitle">
+                    اختبر فهمك
+                </h3>
+
+                <p id="quizText">
+                    اختبر فهمك وتعرّف على نقاط
+                    القوة التي لديك.
+                </p>
+
+            </a>
+
+
+            <!-- الأصدقاء -->
+
+            <a href="friends.html" class="card card-four">
+
+                <div class="card-icon">
+                    👥
+                </div>
+
+                <h3 id="friendsTitle">
+                    التواصل مع الأصدقاء
+                </h3>
+
+                <p id="friendsText">
+                    شارك الأفكار وتعاون مع زملائك
+                    في رحلة التعلم.
+                </p>
+
+            </a>
+
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        /* اختيار نمط التعلم */
+
+        const styleCards =
+            document.querySelectorAll(".style-card");
+
+        styleCards.forEach(function(card) {
+
+            card.addEventListener("click", function() {
+
+                styleCards.forEach(function(item) {
+                    item.classList.remove("selected");
+                });
+
+                card.classList.add("selected");
+
+            });
+
+        });
+
+
+        /* تغيير اللغة */
+
+        let english = false;
+
+        function toggleLanguage() {
+
+            english = !english;
+
+            const button =
+                document.getElementById("languageButton");
+
+            if (english) {
+
+                document.documentElement.lang = "en";
+                document.documentElement.dir = "ltr";
+
+                button.innerText = "🌐 العربية";
+
+                document.getElementById("welcomeTitle").innerText =
+                    "Welcome to Namat 👋";
+
+                document.getElementById("welcomeText").innerText =
+                    "Learn in the way that suits you and develop your skills step by step 💜";
+
+                document.getElementById("assistantTitle").innerText =
+                    "I am your AI assistant";
+
+                document.getElementById("assistantText").innerText =
+                    "I will not give you the answer directly. Instead, I will explain, ask you questions, and give you hints until you reach the answer yourself.";
+
+                document.getElementById("assistantButton").innerText =
+                    "Start Chat";
+
+                document.getElementById("stylesTitle").innerText =
+                    "🎨 Choose Your Learning Style";
+
+                document.getElementById("stylesText").innerText =
+                    "Choose the way that helps you understand better";
+
+                document.getElementById("visualTitle").innerText =
+                    "Visual";
+
+                document.getElementById("visualText").innerText =
+                    "I learn through images, diagrams, and colors";
+
+                document.getElementById("audioTitle").innerText =
+                    "Auditory";
+
+                document.getElementById("audioText").innerText =
+                    "I learn through explanations and listening";
+
+                document.getElementById("kineticTitle").innerText =
+                    "Kinaesthetic";
+
+                document.getElementById("kineticText").innerText =
+                    "I learn through experience and practice";
+
+                document.getElementById("readingTitle").innerText =
+                    "Reading / Writing";
+
+                document.getElementById("readingText").innerText =
+                    "I learn through reading and writing";
+
+                document.getElementById("platformTitle").innerText =
+                    "What would you like to do today? ✨";
+
+                document.getElementById("subjectsTitle").innerText =
+                    "Subjects";
+
+                document.getElementById("subjectsText").innerText =
+                    "Choose the subject you want to learn and start your learning journey.";
+
+                document.getElementById("trainingTitle").innerText =
+                    "Practice & Exercises";
+
+                document.getElementById("trainingText").innerText =
+                    "Practice questions and improve your understanding step by step.";
+
+                document.getElementById("quizTitle").innerText =
+                    "Test Your Understanding";
+
+                document.getElementById("quizText").innerText =
+                    "Test your understanding and discover your strengths.";
+
+                document.getElementById("friendsTitle").innerText =
+                    "Connect with Friends";
+
+                document.getElementById("friendsText").innerText =
+                    "Share ideas and collaborate with your classmates.";
+
+            } else {
+
+                document.documentElement.lang = "ar";
+                document.documentElement.dir = "rtl";
+
+                button.innerText = "🌐 English";
+
+                document.getElementById("welcomeTitle").innerText =
+                    "مرحبًا بك في نمط 👋";
+
+                document.getElementById("welcomeText").innerText =
+                    "تعلّم بالطريقة التي تناسبك، ونمّي مهاراتك خطوة بخطوة 💜";
+
+                document.getElementById("assistantTitle").innerText =
+                    "أنا مساعدك الذكي";
+
+                document.getElementById("assistantText").innerText =
+                    "لن أعطيك الإجابة مباشرة، بل سأشرح لك وأطرح عليك الأسئلة وأعطيك التلميحات حتى تصل إلى الحل بنفسك.";
+
+                document.getElementById("assistantButton").innerText =
+                    "ابدأ المحادثة";
+
+                document.getElementById("stylesTitle").innerText =
+                    "🎨 اختر نمط تعلّمك";
+
+                document.getElementById("stylesText").innerText =
+                    "اختر الطريقة التي تساعدك على الفهم بشكل أفضل";
+
+                document.getElementById("visualTitle").innerText =
+                    "بصري";
+
+                document.getElementById("visualText").innerText =
+                    "أتعلم من خلال الصور والمخططات والألوان";
+
+                document.getElementById("audioTitle").innerText =
+                    "سمعي";
+
+                document.getElementById("audioText").innerText =
+                    "أتعلم من خلال الشرح والاستماع";
+
+                document.getElementById("kineticTitle").innerText =
+                    "حركي";
+
+                document.getElementById("kineticText").innerText =
+                    "أتعلم من خلال التجربة والتطبيق";
+
+                document.getElementById("readingTitle").innerText =
+                    "قرائي / كتابي";
+
+                document.getElementById("readingText").innerText =
+                    "أتعلم من خلال القراءة والكتابة";
+
+                document.getElementById("platformTitle").innerText =
+                    "ماذا تريد أن تفعل اليوم؟ ✨";
+
+                document.getElementById("subjectsTitle").innerText =
+                    "المواد الدراسية";
+
+                document.getElementById("subjectsText").innerText =
+                    "اختر المادة التي تريد تعلمها وابدأ رحلتك التعليمية.";
+
+                document.getElementById("trainingTitle").innerText =
+                    "التدريب والتمارين";
+
+                document.getElementById("trainingText").innerText =
+                    "تدرب على الأسئلة وطوّر فهمك خطوة بخطوة.";
+
+                document.getElementById("quizTitle").innerText =
+                    "اختبر فهمك";
+
+                document.getElementById("quizText").innerText =
+                    "اختبر فهمك وتعرّف على نقاط القوة التي لديك.";
+
+                document.getElementById("friendsTitle").innerText =
+                    "التواصل مع الأصدقاء";
+
+                document.getElementById("friendsText").innerText =
+                    "شارك الأفكار وتعاون مع زملائك في رحلة التعلم.";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
