@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>نمط - التواصل مع الأصدقاء</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eee5ff, #d9c4ff);
+            color: #4b3566;
+            min-height: 100vh;
+        }
+
+        .language-switch {
+            position: fixed;
+            top: 20px;
+            right: 25px;
+            z-index: 20;
+        }
+
+        .language-switch button {
+            border: none;
+            background: white;
+            color: #684094;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(82, 48, 120, 0.12);
+            transition: 0.2s;
+        }
+
+        .language-switch button:hover {
+            transform: translateY(-2px);
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 40px 25px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 42px;
+            color: #5b3b82;
+        }
+
+        .header p {
+            font-size: 19px;
+            color: #70578c;
+            margin-top: 15px;
+        }
+
+        .box {
+            background: rgba(255, 255, 255, 0.88);
+            border-radius: 30px;
+            padding: 35px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(90, 55, 130, 0.12);
+        }
+
+        .box h2 {
+            text-align: center;
+            color: #5b3b82;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .add-friend {
+            display: flex;
+            gap: 12px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .add-friend input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: #f4edff;
+            padding: 16px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            color: #4b3566;
+        }
+
+        .add-friend button {
+            border: none;
+            background: #7952a8;
+            color: white;
+            padding: 0 25px;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .add-friend button:hover {
+            background: #68458f;
+            transform: translateY(-2px);
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .option {
+            text-decoration: none;
+            display: block;
+            background: #f4edff;
+            border-radius: 24px;
+            padding: 25px;
+            text-align: center;
+            color: #5b3b82;
+            transition: 0.3s;
+        }
+
+        .option:hover {
+            transform: translateY(-6px);
+            background: #e9dbfa;
+        }
+
+        .option-icon {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .option h3 {
+            margin: 8px 0;
+        }
+
+        .option p {
+            margin: 0;
+            color: #765d8e;
+            line-height: 1.7;
+        }
+
+        .privacy {
+            text-align: center;
+            background: #eee5ff;
+            border-radius: 20px;
+            padding: 18px;
+            margin-top: 25px;
+            color: #6b5085;
+            line-height: 1.7;
+        }
+
+        .back {
+            display: block;
+            width: fit-content;
+            margin: 30px auto 0;
+            padding: 12px 25px;
+            background: #7952a8;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+        }
+
+        @media (max-width: 750px) {
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 34px;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .add-friend {
+                flex-direction: column;
+            }
+
+            .add-friend button {
+                padding: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="language-switch">
+        <button id="languageButton" onclick="toggleLanguage()">
+            🌐 English
+        </button>
+    </div>
+
+    <div class="page">
+
+        <div class="container">
+
+            <div class="header">
+
+                <h1 id="mainTitle">التواصل مع الأصدقاء 👥</h1>
+
+                <p id="mainText">
+                    التعلم مع أصدقائك، شارك الأفكار، وتعاون في رحلة التعلم
+                </p>
+
+            </div>
+
+
+            <!-- إضافة صديق -->
+
+            <div class="box">
+
+                <h2 id="addFriendTitle">➕ إضافة صديق</h2>
+
+                <div class="add-friend">
+
+                    <input
+                        id="emailInput"
+                        type="email"
+                        placeholder="📧 البريد الإلكتروني"
+                    >
+
+                    <input
+                        id="phoneInput"
+                        type="tel"
+                        placeholder="📱 رقم الجوال"
+                    >
+
+                    <button id="addButton">
+                        إضافة
+                    </button>
+
+                </div>
+
+                <div class="privacy" id="privacyText">
+
+                    🔒 معلومات التواصل خاصة، ولا تظهر للطلاب الآخرين.
+
+                </div>
+
+            </div>
+
+
+            <!-- خيارات التواصل -->
+
+            <div class="box">
+
+                <h2 id="optionsTitle">
+                    ماذا يمكنك أن تفعل مع أصدقائك؟
+                </h2>
+
+                <div class="options">
+
+
+                    <!-- مناقشة الأفكار -->
+
+                    <a href="مناقشة.html" class="option">
+
+                        <div class="option-icon">💬</div>
+
+                        <h3 id="discussionTitle">
+                            مناقشة الأفكار
+                        </h3>
+
+                        <p id="discussionText">
+                            شاركي أفكارك وناقشي الدروس والأسئلة مع أصدقائك.
+                        </p>
+
+                    </a>
+
+
+                    <!-- مجموعات الدراسة -->
+
+                    <a href="قروب.html" class="option">
+
+                        <div class="option-icon">🤝</div>
+
+                        <h3 id="groupsTitle">
+                            مجموعات الدراسة
+                        </h3>
+
+                        <p id="groupsText">
+                            كوّن مجموعة للتعاون والمذاكرة والأنشطة التعليمية.
+                        </p>
+
+                    </a>
+
+
+                    <!-- التحديات التعليمية -->
+
+                    <a href="تحديات.html" class="option">
+
+                        <div class="option-icon">🏆</div>
+
+                        <h3 id="challengesTitle">
+                            التحديات التعليمية
+                        </h3>
+
+                        <p id="challengesText">
+                            شارك أصدقاءك تحديات تعليمية ممتعة وتعاونية.
+                        </p>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+
+            <a href="home.html" class="back" id="backButton">
+                ← العودة للرئيسية
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        let isEnglish = false;
+
+        function toggleLanguage() {
+
+            isEnglish = !isEnglish;
+
+            const button = document.getElementById("languageButton");
+
+            if (isEnglish) {
+
+                document.documentElement.lang = "en";
+                document.documentElement.dir = "ltr";
+
+                button.innerText = "🌐 العربية";
+
+                document.getElementById("mainTitle").innerText =
+                    "Connect with Friends 👥";
+
+                document.getElementById("mainText").innerText =
+                    "Learn with your friends, share ideas, and collaborate on your learning journey.";
+
+                document.getElementById("addFriendTitle").innerText =
+                    "➕ Add a Friend";
+
+                document.getElementById("emailInput").placeholder =
+                    "📧 Email Address";
+
+                document.getElementById("phoneInput").placeholder =
+                    "📱 Phone Number";
+
+                document.getElementById("addButton").innerText =
+                    "Add";
+
+                document.getElementById("privacyText").innerText =
+                    "🔒 Contact information is private and is not visible to other students.";
+
+                document.getElementById("optionsTitle").innerText =
+                    "What can you do with your friends?";
+
+                document.getElementById("discussionTitle").innerText =
+                    "Discuss Ideas";
+
+                document.getElementById("discussionText").innerText =
+                    "Share your ideas and discuss lessons and questions with your friends.";
+
+                document.getElementById("groupsTitle").innerText =
+                    "Study Groups";
+
+                document.getElementById("groupsText").innerText =
+                    "Create a group for collaboration, studying, and educational activities.";
+
+                document.getElementById("challengesTitle").innerText =
+                    "Educational Challenges";
+
+                document.getElementById("challengesText").innerText =
+                    "Take part in fun and collaborative educational challenges with your friends.";
+
+                document.getElementById("backButton").innerText =
+                    "← Back to Home";
+
+            } else {
+
+                document.documentElement.lang = "ar";
+                document.documentElement.dir = "rtl";
+
+                button.innerText = "🌐 English";
+
+                document.getElementById("mainTitle").innerText =
+                    "التواصل مع الأصدقاء 👥";
+
+                document.getElementById("mainText").innerText =
+                    "التعلم مع أصدقائك، شارك الأفكار، وتعاون في رحلة التعلم";
+
+                document.getElementById("addFriendTitle").innerText =
+                    "➕ إضافة صديق";
+
+                document.getElementById("emailInput").placeholder =
+                    "📧 البريد الإلكتروني";
+
+                document.getElementById("phoneInput").placeholder =
+                    "📱 رقم الجوال";
+
+                document.getElementById("addButton").innerText =
+                    "إضافة";
+
+                document.getElementById("privacyText").innerText =
+                    "🔒 معلومات التواصل خاصة، ولا تظهر للطلاب الآخرين.";
+
+                document.getElementById("optionsTitle").innerText =
+                    "ماذا يمكنك أن تفعل مع أصدقائك؟";
+
+                document.getElementById("discussionTitle").innerText =
+                    "مناقشة الأفكار";
+
+                document.getElementById("discussionText").innerText =
+                    "شاركي أفكارك وناقشي الدروس والأسئلة مع أصدقائك.";
+
+                document.getElementById("groupsTitle").innerText =
+                    "مجموعات الدراسة";
+
+                document.getElementById("groupsText").innerText =
+                    "كوّن مجموعة للتعاون والمذاكرة والأنشطة التعليمية.";
+
+                document.getElementById("challengesTitle").innerText =
+                    "التحديات التعليمية";
+
+                document.getElementById("challengesText").innerText =
+                    "شارك أصدقاءك تحديات تعليمية ممتعة وتعاونية.";
+
+                document.getElementById("backButton").innerText =
+                    "← العودة للرئيسية";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
