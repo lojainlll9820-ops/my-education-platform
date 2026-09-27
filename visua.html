@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>النمط البصري | نمط</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f4edff, #dfcef5, #c9afe7);
+            color: #4d3565;
+            min-height: 100vh;
+        }
+
+        .page {
+            max-width: 1150px;
+            margin: auto;
+            padding: 40px 25px 70px;
+        }
+
+        /* زر اللغة - إضافة */
+
+        .language-switch {
+            position: fixed;
+            top: 20px;
+            right: 25px;
+            z-index: 20;
+        }
+
+        .language-switch button {
+            border: none;
+            background: white;
+            color: #684094;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(82, 48, 120, 0.12);
+            transition: 0.2s;
+        }
+
+        .language-switch button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* الهيدر */
+
+        .header {
+            background: linear-gradient(135deg, #70459b, #9b70c4);
+            color: white;
+            border-radius: 35px;
+            padding: 40px;
+            box-shadow: 0 18px 40px rgba(82, 48, 120, 0.22);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 42px;
+        }
+
+        .header p {
+            margin: 14px 0 0;
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 700px;
+        }
+
+        .eye {
+            position: absolute;
+            left: 45px;
+            top: 35px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+        }
+
+        /* شريط النمط */
+
+        .mode {
+            background: rgba(255,255,255,0.72);
+            border-radius: 25px;
+            padding: 18px 22px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 25px rgba(82,48,120,0.10);
+        }
+
+        .mode strong {
+            color: #5c3b7b;
+        }
+
+        .mode span {
+            background: #e4d4f7;
+            color: #70459b;
+            padding: 9px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        /* عنوان */
+
+        .section-title {
+            text-align: center;
+            margin: 35px 0 22px;
+        }
+
+        .section-title h2 {
+            margin: 0;
+            color: #56347d;
+            font-size: 30px;
+        }
+
+        .section-title p {
+            margin-top: 10px;
+            color: #76598f;
+        }
+
+        /* البطاقات */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.78);
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 12px 30px rgba(82,48,120,0.12);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+        }
+
+        .card-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 20px;
+            background: #e5d6f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 34px;
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+            color: #583778;
+            font-size: 23px;
+        }
+
+        .card p {
+            margin: 0;
+            color: #70558a;
+            line-height: 1.8;
+        }
+
+        /* مثال بصري */
+
+        .example {
+            background: linear-gradient(135deg, #e9dcfa, #d8c1f0);
+            border-radius: 32px;
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: 0 12px 30px rgba(82,48,120,0.12);
+        }
+
+        .example h2 {
+            margin-top: 0;
+            color: #56347d;
+        }
+
+        .diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .step {
+            background: rgba(255,255,255,0.8);
+            border-radius: 20px;
+            padding: 18px 25px;
+            text-align: center;
+            min-width: 130px;
+            color: #65447f;
+            font-weight: bold;
+        }
+
+        .arrow {
+            font-size: 25px;
+            color: #70459b;
+        }
+
+        /* زر */
+
+        .button-area {
+            text-align: center;
+            margin-top: 35px;
+        }
+
+        .button {
+            display: inline-block;
+            text-decoration: none;
+            background: #70459b;
+            color: white;
+            padding: 15px 38px;
+            border-radius: 30px;
+            font-size: 17px;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(82,48,120,0.20);
+            transition: 0.25s;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            background: #5f3987;
+        }
+
+        /* دوائر */
+
+        .circle {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .circle-one {
+            width: 230px;
+            height: 230px;
+            background: rgba(255,255,255,0.25);
+            top: -80px;
+            right: -70px;
+        }
+
+        .circle-two {
+            width: 170px;
+            height: 170px;
+            background: rgba(112,69,155,0.10);
+            bottom: -60px;
+            left: -50px;
+        }
+
+        /* الجوال */
+
+        @media (max-width: 750px) {
+
+            .page {
+                padding: 25px 16px 50px;
+            }
+
+            .header {
+                padding: 30px 25px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .eye {
+                position: static;
+                margin-bottom: 20px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .mode {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- زر اللغة - إضافة -->
+
+    <div class="language-switch">
+        <button id="languageButton" onclick="toggleLanguage()">
+            🌐 English
+        </button>
+    </div>
+
+
+    <div class="circle circle-one"></div>
+    <div class="circle circle-two"></div>
+
+
+    <main class="page">
+
+
+        <!-- المقدمة -->
+
+        <header class="header">
+
+            <div class="eye">
+                👁️
+            </div>
+
+            <h1>
+                النمط البصري
+            </h1>
+
+            <p>
+         اجعل المعلومات امام عينيك✨
+                تعلّم من خلال الصور والألوان والمخططات
+                والعروض المرئية.
+            </p>
+
+        </header>
+
+
+        <!-- النمط المختار -->
+
+        <div class="mode">
+
+            <div>
+                نمط التعلم الحالي:
+                <strong>البصري</strong>
+            </div>
+
+            <span>
+                👁️ بصري
+            </span>
+
+        </div>
+
+
+        <!-- ماذا يناسبك؟ -->
+
+        <div class="section-title">
+
+            <h2>
+                كيف سيساعدك نمط؟ 💜
+            </h2>
+
+            <p>
+         تتعلم اكثر عندما تجعل المعلومات امامك 
+            </p>
+
+        </div>
+
+
+        <section class="cards">
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🖼️
+                </div>
+
+                <h3>
+                    الصور والرسومات
+                </h3>
+
+                <p>
+                    تحويل المعلومات إلى صور ورسومات
+                    تساعدك على رؤية الفكرة وفهمها بسهولة.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🎨
+                </div>
+
+                <h3>
+                    الألوان
+                </h3>
+
+                <p>
+                    استخدام ألوان مختلفة لتمييز
+                    الأفكار والمعلومات المهمة.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    📊
+                </div>
+
+                <h3>
+                    المخططات
+                </h3>
+
+                <p>
+                    ترتيب المعلومات في مخططات
+                    وجداول تجعل العلاقات بينها أوضح.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🧩
+                </div>
+
+                <h3>
+                    أنشطة مرئية
+                </h3>
+
+                <p>
+                    تمارين تعتمد على الصور
+                    والترتيب والمقارنة والتوصيل.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- زر المساعد -->
+
+        <div class="button-area">
+
+            <a href="assistant.html" class="button">
+                🤖 اسأل مساعد نمط
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- الترجمة - إضافة -->
+
+    <script>
+
+        function toggleLanguage() {
+
+            const button = document.getElementById("languageButton");
+
+            if (document.documentElement.lang === "ar") {
+
+                document.documentElement.lang = "en";
+                document.documentElement.dir = "ltr";
+
+                document.querySelector(".header h1").innerText =
+                    "Visual Learning Style";
+
+                document.querySelector(".header p").innerText =
+                    "Keep information in front of your eyes ✨ Learn through images, colors, diagrams, and visual presentations.";
+
+                document.querySelector(".mode div").innerHTML =
+                    "Current Learning Style: <strong>Visual</strong>";
+
+                document.querySelector(".mode span").innerText =
+                    "👁️ Visual";
+
+                document.querySelector(".section-title h2").innerText =
+                    "How will Namat help you? 💜";
+
+                document.querySelector(".section-title p").innerText =
+                    "You learn better when you can see the information in front of you.";
+
+                const titles = document.querySelectorAll(".card h3");
+                const texts = document.querySelectorAll(".card p");
+
+                titles[0].innerText = "Images & Drawings";
+                texts[0].innerText =
+                    "Turn information into images and drawings that help you see and understand ideas easily.";
+
+                titles[1].innerText = "Colors";
+                texts[1].innerText =
+                    "Use different colors to highlight important ideas and information.";
+
+                titles[2].innerText = "Diagrams";
+                texts[2].innerText =
+                    "Organize information into diagrams and tables that make relationships clearer.";
+
+                titles[3].innerText = "Visual Activities";
+                texts[3].innerText =
+                    "Exercises based on images, arranging, comparing, and matching.";
+
+                document.querySelector(".button").innerText =
+                    "🤖 Ask Namat Assistant";
+
+                button.innerText = "🌐 العربية";
+
+            } else {
+
+                document.documentElement.lang = "ar";
+                document.documentElement.dir = "rtl";
+
+                document.querySelector(".header h1").innerText =
+                    "النمط البصري";
+
+                document.querySelector(".header p").innerText =
+                    "اجعل المعلومات امام عينيك✨ تعلّم من خلال الصور والألوان والمخططات والعروض المرئية.";
+
+                document.querySelector(".mode div").innerHTML =
+                    "نمط التعلم الحالي: <strong>البصري</strong>";
+
+                document.querySelector(".mode span").innerText =
+                    "👁️ بصري";
+
+                document.querySelector(".section-title h2").innerText =
+                    "كيف سيساعدك نمط؟ 💜";
+
+                document.querySelector(".section-title p").innerText =
+                    "تتعلم اكثر عندما تجعل المعلومات امامك";
+
+                const titles = document.querySelectorAll(".card h3");
+                const texts = document.querySelectorAll(".card p");
+
+                titles[0].innerText = "الصور والرسومات";
+                texts[0].innerText =
+                    "تحويل المعلومات إلى صور ورسومات تساعدك على رؤية الفكرة وفهمها بسهولة.";
+
+                titles[1].innerText = "الألوان";
+                texts[1].innerText =
+                    "استخدام ألوان مختلفة لتمييز الأفكار والمعلومات المهمة.";
+
+                titles[2].innerText = "المخططات";
+                texts[2].innerText =
+                    "ترتيب المعلومات في مخططات وجداول تجعل العلاقات بينها أوضح.";
+
+                titles[3].innerText = "أنشطة مرئية";
+                texts[3].innerText =
+                    "تمارين تعتمد على الصور والترتيب والمقارنة والتوصيل.";
+
+                document.querySelector(".button").innerText =
+                    "🤖 اسأل مساعد نمط";
+
+                button.innerText = "🌐 English";
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
