@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>نمط - النمط القرائي والكتابي</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eee5ff, #d9c4ff);
+            color: #4b3566;
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 40px 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* زر اللغة - إضافة */
+
+        .language-switch {
+            position: fixed;
+            top: 20px;
+            right: 25px;
+            z-index: 20;
+        }
+
+        .language-switch button {
+            border: none;
+            background: white;
+            color: #684094;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(82, 48, 120, 0.12);
+            transition: 0.2s;
+        }
+
+        .language-switch button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* المقدمة */
+
+        .header {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(90, 55, 130, 0.12);
+        }
+
+        .icon {
+            font-size: 65px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 42px;
+            color: #5b3b82;
+        }
+
+        .header p {
+            font-size: 19px;
+            line-height: 1.8;
+            margin: 15px auto 0;
+            max-width: 700px;
+            color: #70578c;
+        }
+
+        /* النمط الحالي */
+
+        .current-style {
+            margin-top: 25px;
+            background: #7952a8;
+            color: white;
+            padding: 18px 25px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            box-shadow: 0 8px 20px rgba(90, 55, 130, 0.18);
+        }
+
+        /* عنوان القسم */
+
+        .section-title {
+            text-align: center;
+            margin: 50px 0 25px;
+        }
+
+        .section-title h2 {
+            color: #5b3b82;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #70578c;
+            font-size: 17px;
+        }
+
+        /* البطاقات */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.88);
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(90, 55, 130, 0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+        }
+
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #5b3b82;
+            font-size: 22px;
+            margin: 10px 0;
+        }
+
+        .card p {
+            color: #70578c;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* زر المساعد */
+
+        .assistant-button {
+            display: block;
+            width: fit-content;
+            margin: 40px auto 0;
+            padding: 15px 35px;
+            background: #7952a8;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 18px;
+            box-shadow: 0 8px 20px rgba(90, 55, 130, 0.18);
+            transition: 0.3s;
+        }
+
+        .assistant-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* الدوائر */
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(100, 60, 150, 0.12);
+            pointer-events: none;
+        }
+
+        .circle-one {
+            width: 300px;
+            height: 300px;
+            top: -120px;
+            right: -100px;
+        }
+
+        .circle-two {
+            width: 230px;
+            height: 230px;
+            bottom: -100px;
+            left: -80px;
+        }
+
+        /* الجوال */
+
+        @media (max-width: 700px) {
+
+            .page {
+                padding: 25px 15px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .header p {
+                font-size: 16px;
+            }
+
+            .current-style {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- زر اللغة - إضافة -->
+
+    <div class="language-switch">
+        <button id="languageButton" onclick="toggleLanguage()">
+            🌐 English
+        </button>
+    </div>
+
+    <div class="page">
+
+        <div class="circle circle-one"></div>
+        <div class="circle circle-two"></div>
+
+        <div class="container">
+
+            <!-- المقدمة -->
+
+            <div class="header">
+
+                <div class="icon">📖</div>
+
+                <h1>النمط القرائي والكتابي</h1>
+
+                <p>
+                    اقرأ، اكتب، لخص، ونظم أفكارك ✨
+                    نمط يساعدك على فهم المعلومات من خلال النصوص والكتابة وترتيب الأفكار.
+                </p>
+
+            </div>
+
+
+            <!-- النمط الحالي -->
+
+            <div class="current-style">
+
+                <span>نمط التعلم الحالي: القرائي والكتابي</span>
+
+                <strong>📖 قرائي / كتابي</strong>
+
+            </div>
+
+
+            <!-- كيف يساعدك نمط -->
+
+            <div class="section-title">
+
+                <h2>كيف سيساعدك نمط؟ 💜</h2>
+
+                <p>
+                    تتعلم اكثر عندما تقرأ وتكتب .
+                </p>
+
+            </div>
+
+
+            <!-- البطاقات -->
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <div class="card-icon">📚</div>
+
+                    <h3>الشرح المكتوب</h3>
+
+                    <p>
+                        احصل على شرح مرتب وواضح للمعلومات من خلال النصوص والأمثلة المكتوبة.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">✍🏻</div>
+
+                    <h3>التلخيص والكتابة</h3>
+
+                    <p>
+                        لخص الدرس واكتب أهم الأفكار بطريقة تساعدك على فهمها وتذكرها.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">📝</div>
+
+                    <h3>تنظيم المعلومات</h3>
+
+                    <p>
+                        رتب أفكارك وملاحظاتك بطريقة واضحة حتى يسهل عليك الرجوع إليها.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">📌</div>
+
+                    <h3>أسئلة وتطبيقات</h3>
+
+                    <p>
+                        تدرب من خلال أسئلة وتمارين كتابية تساعدك على التأكد من فهمك.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- زر المساعد -->
+
+            <a href="assistant.html" class="assistant-button">
+                🤖 اسأل مساعد نمط
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- الترجمة - إضافة -->
+
+    <script>
+
+        function toggleLanguage() {
+
+            const button = document.getElementById("languageButton");
+
+            if (document.documentElement.lang === "ar") {
+
+                document.documentElement.lang = "en";
+                document.documentElement.dir = "ltr";
+
+                document.querySelector(".header h1").innerText =
+                    "Reading & Writing Learning Style";
+
+                document.querySelector(".header p").innerText =
+                    "Read, write, summarize, and organize your ideas ✨ Namat helps you understand information through texts, writing, and organizing ideas.";
+
+                document.querySelector(".current-style span").innerText =
+                    "Current Learning Style: Reading & Writing";
+
+                document.querySelector(".current-style strong").innerText =
+                    "📖 Reading / Writing";
+
+                document.querySelector(".section-title h2").innerText =
+                    "How will Namat help you? 💜";
+
+                document.querySelector(".section-title p").innerText =
+                    "You learn better when you read and write.";
+
+                const titles = document.querySelectorAll(".card h3");
+                const texts = document.querySelectorAll(".card p");
+
+                titles[0].innerText = "Written Explanations";
+                texts[0].innerText =
+                    "Get clear and organized explanations through written texts and examples.";
+
+                titles[1].innerText = "Summarizing & Writing";
+                texts[1].innerText =
+                    "Summarize the lesson and write down the main ideas in a way that helps you understand and remember them.";
+
+                titles[2].innerText = "Organizing Information";
+                texts[2].innerText =
+                    "Organize your ideas and notes clearly so they are easy to review.";
+
+                titles[3].innerText = "Questions & Practice";
+                texts[3].innerText =
+                    "Practice through written questions and exercises that help you check your understanding.";
+
+                document.querySelector(".assistant-button").innerText =
+                    "🤖 Ask Namat Assistant";
+
+                button.innerText = "🌐 العربية";
+
+            } else {
+
+                document.documentElement.lang = "ar";
+                document.documentElement.dir = "rtl";
+
+                document.querySelector(".header h1").innerText =
+                    "النمط القرائي والكتابي";
+
+                document.querySelector(".header p").innerText =
+                    "اقرأ، اكتب، لخص، ونظم أفكارك ✨ نمط يساعدك على فهم المعلومات من خلال النصوص والكتابة وترتيب الأفكار.";
+
+                document.querySelector(".current-style span").innerText =
+                    "نمط التعلم الحالي: القرائي والكتابي";
+
+                document.querySelector(".current-style strong").innerText =
+                    "📖 قرائي / كتابي";
+
+                document.querySelector(".section-title h2").innerText =
+                    "كيف سيساعدك نمط؟ 💜";
+
+                document.querySelector(".section-title p").innerText =
+                    "تتعلم اكثر عندما تقرأ وتكتب .";
+
+                const titles = document.querySelectorAll(".card h3");
+                const texts = document.querySelectorAll(".card p");
+
+                titles[0].innerText = "الشرح المكتوب";
+                texts[0].innerText =
+                    "احصل على شرح مرتب وواضح للمعلومات من خلال النصوص والأمثلة المكتوبة.";
+
+                titles[1].innerText = "التلخيص والكتابة";
+                texts[1].innerText =
+                    "لخص الدرس واكتب أهم الأفكار بطريقة تساعدك على فهمها وتذكرها.";
+
+                titles[2].innerText = "تنظيم المعلومات";
+                texts[2].innerText =
+                    "رتب أفكارك وملاحظاتك بطريقة واضحة حتى يسهل عليك الرجوع إليها.";
+
+                titles[3].innerText = "أسئلة وتطبيقات";
+                texts[3].innerText =
+                    "تدرب من خلال أسئلة وتمارين كتابية تساعدك على التأكد من فهمك.";
+
+                document.querySelector(".assistant-button").innerText =
+                    "🤖 اسأل مساعد نمط";
+
+                button.innerText = "🌐 English";
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
