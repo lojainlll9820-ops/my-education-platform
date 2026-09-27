@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>مساعد نمط الذكي</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eee5ff, #d6c0f0);
+            min-height: 100vh;
+            color: #4d3568;
+        }
+
+        .language-switch {
+            position: fixed;
+            top: 20px;
+            right: 25px;
+            z-index: 20;
+        }
+
+        .language-switch button {
+            border: none;
+            background: white;
+            color: #684094;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(82, 48, 120, 0.12);
+            transition: 0.2s;
+        }
+
+        .language-switch button:hover {
+            transform: translateY(-2px);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+            padding: 40px 0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 42px;
+            color: #5b3b82;
+        }
+
+        .header p {
+            font-size: 19px;
+            color: #765d8e;
+            margin-top: 12px;
+        }
+
+        .subjects-box,
+        .chat {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 30px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(80, 50, 110, 0.12);
+        }
+
+        .subjects-box h2 {
+            text-align: center;
+            color: #5b3b82;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .subjects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .subject {
+            border: none;
+            background: #f4edff;
+            border-radius: 22px;
+            padding: 25px 15px;
+            cursor: pointer;
+            color: #5b3b82;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .subject:hover {
+            transform: translateY(-5px);
+            background: #e9dbfa;
+        }
+
+        .subject span {
+            display: block;
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .chat {
+            display: none;
+        }
+
+        .selected-subject {
+            text-align: center;
+            color: #7952a8;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .chat-area {
+            background: #faf7ff;
+            border-radius: 25px;
+            padding: 25px;
+            min-height: 300px;
+        }
+
+        .message {
+            padding: 16px 20px;
+            border-radius: 20px;
+            max-width: 80%;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .bot {
+            background: #eee5ff;
+            margin-left: auto;
+        }
+
+        .robot {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .quick-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .quick-buttons button {
+            border: none;
+            background: #eee5ff;
+            color: #5b3b82;
+            padding: 12px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .input-area input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: #f4edff;
+            padding: 15px;
+            border-radius: 20px;
+            font-size: 16px;
+        }
+
+        .send {
+            border: none;
+            background: #7952a8;
+            color: white;
+            padding: 0 22px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .back {
+            display: block;
+            width: fit-content;
+            margin: 25px auto 0;
+            color: #7952a8;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media (max-width: 700px) {
+
+            .subjects {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+        }
+
+        @media (max-width: 450px) {
+
+            .subjects {
+                grid-template-columns: 1fr;
+            }
+
+            .input-area {
+                flex-direction: column;
+            }
+
+            .send {
+                padding: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="language-switch">
+        <button id="languageButton" onclick="toggleLanguage()">
+            🌐 English
+        </button>
+    </div>
+
+
+    <div class="container">
+
+        <div class="header">
+
+            <h1 id="mainTitle">مساعد نمط الذكي 🤖</h1>
+
+            <p id="mainText">
+                أنا هنا لأساعدك تفهمين، مو أعطيك الإجابة مباشرة 💜
+            </p>
+
+        </div>
+
+
+        <!-- اختيار المادة -->
+
+        <div class="subjects-box" id="subjectsBox">
+
+            <h2 id="subjectTitle">
+                اختاري المادة التي تحتاجين مساعدة فيها 📚
+            </h2>
+
+            <div class="subjects">
+
+                <button class="subject" onclick="openChat('الرياضيات')">
+                    <span>➗</span>
+                    <span id="mathText">الرياضيات</span>
+                </button>
+
+                <button class="subject" onclick="openChat('العلوم')">
+                    <span>🧪</span>
+                    <span id="scienceText">العلوم</span>
+                </button>
+
+                <button class="subject" onclick="openChat('لغتي')">
+                    <span>📖</span>
+                    <span id="arabicText">لغتي</span>
+                </button>
+
+                <button class="subject" onclick="openChat('اللغة الإنجليزية')">
+                    <span>🇬🇧</span>
+                    <span id="englishText">اللغة الإنجليزية</span>
+                </button>
+
+                <button class="subject" onclick="openChat('الدراسات الاجتماعية')">
+                    <span>🌍</span>
+                    <span id="socialText">الدراسات الاجتماعية</span>
+                </button>
+
+                <button class="subject" onclick="openChat('المهارات الرقمية')">
+                    <span>💻</span>
+                    <span id="digitalText">المهارات الرقمية</span>
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- المحادثة -->
+
+        <div class="chat" id="chatBox">
+
+            <div class="selected-subject" id="selectedSubject"></div>
+
+            <div class="chat-area">
+
+                <div class="message bot">
+
+                    <div class="robot">🤖💜</div>
+
+                    <strong id="welcomeTitle">
+                        أهلًا بك في مساعد نمط!
+                    </strong>
+
+                    <br>
+
+                    <span id="welcomeText">
+                        أنا هنا لأساعدك على الفهم والتعلّم،
+                        وسنكتشف الحل معا خطوة بخطوة
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-buttons">
+
+                <button onclick="sendQuick('أعطني تلميح')">
+                    💡 <span id="hintText">أعطني تلميح</span>
+                </button>
+
+                <button onclick="sendQuick('اشرح بطريقة أبسط')">
+                    🧠 <span id="simpleText">اشرح بطريقة أبسط</span>
+                </button>
+
+                <button onclick="sendQuick('اختبرني')">
+                    🎯 <span id="testText">اختبرني</span>
+                </button>
+
+            </div>
+
+
+            <div class="input-area">
+
+                <input
+                    type="text"
+                    id="messageInput"
+                    placeholder="اكتبي سؤالك هنا..."
+                >
+
+                <button class="send" onclick="sendMessage()" id="sendButton">
+                    إرسال
+                </button>
+
+            </div>
+
+
+            <a class="back" onclick="backToSubjects()" id="backButton">
+                ← تغيير المادة
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        let isEnglish = false;
+
+
+        function openChat(subject) {
+
+            document.getElementById("subjectsBox").style.display = "none";
+
+            document.getElementById("chatBox").style.display = "block";
+
+            let subjectsEnglish = {
+                "الرياضيات": "Mathematics",
+                "العلوم": "Science",
+                "لغتي": "Arabic",
+                "اللغة الإنجليزية": "English",
+                "الدراسات الاجتماعية": "Social Studies",
+                "المهارات الرقمية": "Digital Skills"
+            };
+
+            let subjectName = isEnglish
+                ? subjectsEnglish[subject]
+                : subject;
+
+            document.getElementById("selectedSubject").innerText =
+                isEnglish
+                    ? "Selected subject: " + subjectName
+                    : "المادة المختارة: " + subjectName;
+
+        }
+
+
+        function backToSubjects() {
+
+            document.getElementById("chatBox").style.display = "none";
+
+            document.getElementById("subjectsBox").style.display = "block";
+
+        }
+
+
+        function sendQuick(text) {
+
+            if (isEnglish) {
+
+                let englishText = {
+                    "أعطني تلميح": "Give me a hint",
+                    "اشرح بطريقة أبسط": "Explain it more simply",
+                    "اختبرني": "Test me"
+                };
+
+                addUserMessage(englishText[text]);
+
+            } else {
+
+                addUserMessage(text);
+
+            }
+
+        }
+
+
+        function sendMessage() {
+
+            let input = document.getElementById("messageInput");
+
+            let text = input.value.trim();
+
+            if (text === "") {
+                return;
+            }
+
+            addUserMessage(text);
+
+            input.value = "";
+
+        }
+
+
+        function addUserMessage(text) {
+
+            let message = document.createElement("div");
+
+            message.className = "message";
+
+            message.style.background = "#7952a8";
+            message.style.color = "white";
+            message.style.margin = "15px 0 15px auto";
+
+            message.innerText = text;
+
+            document.querySelector(".chat-area").appendChild(message);
+
+        }
+
+
+        function toggleLanguage() {
+
+            isEnglish = !isEnglish;
+
+            let button = document.getElementById("languageButton");
+
+            if (isEnglish) {
+
+                document.documentElement.lang = "en";
+                document.documentElement.dir = "ltr";
+
+                button.innerText = "🌐 العربية";
+
+                document.getElementById("mainTitle").innerText =
+                    "Namat AI Assistant 🤖";
+
+                document.getElementById("mainText").innerText =
+                    "I am here to help you understand, not just give you the answer 💜";
+
+                document.getElementById("subjectTitle").innerText =
+                    "Choose the subject you need help with 📚";
+
+                document.getElementById("mathText").innerText =
+                    "Mathematics";
+
+                document.getElementById("scienceText").innerText =
+                    "Science";
+
+                document.getElementById("arabicText").innerText =
+                    "Arabic";
+
+                document.getElementById("englishText").innerText =
+                    "English";
+
+                document.getElementById("socialText").innerText =
+                    "Social Studies";
+
+                document.getElementById("digitalText").innerText =
+                    "Digital Skills";
+
+                document.getElementById("welcomeTitle").innerText =
+                    "Welcome to Namat AI Assistant!";
+
+                document.getElementById("welcomeText").innerText =
+                    "I am here to help you understand and learn, and we will discover the solution together step by step.";
+
+                document.getElementById("hintText").innerText =
+                    "Give me a hint";
+
+                document.getElementById("simpleText").innerText =
+                    "Explain it more simply";
+
+                document.getElementById("testText").innerText =
+                    "Test me";
+
+                document.getElementById("messageInput").placeholder =
+                    "Write your question here...";
+
+                document.getElementById("sendButton").innerText =
+                    "Send";
+
+                document.getElementById("backButton").innerText =
+                    "← Change subject";
+
+            } else {
+
+                document.documentElement.lang = "ar";
+                document.documentElement.dir = "rtl";
+
+                button.innerText = "🌐 English";
+
+                document.getElementById("mainTitle").innerText =
+                    "مساعد نمط الذكي 🤖";
+
+                document.getElementById("mainText").innerText =
+                    "أنا هنا لأساعدك تفهمين، مو أعطيك الإجابة مباشرة 💜";
+
+                document.getElementById("subjectTitle").innerText =
+                    "اختاري المادة التي تحتاجين مساعدة فيها 📚";
+
+                document.getElementById("mathText").innerText =
+                    "الرياضيات";
+
+                document.getElementById("scienceText").innerText =
+                    "العلوم";
+
+                document.getElementById("arabicText").innerText =
+                    "لغتي";
+
+                document.getElementById("englishText").innerText =
+                    "اللغة الإنجليزية";
+
+                document.getElementById("socialText").innerText =
+                    "الدراسات الاجتماعية";
+
+                document.getElementById("digitalText").innerText =
+                    "المهارات الرقمية";
+
+                document.getElementById("welcomeTitle").innerText =
+                    "أهلًا بك في مساعد نمط!";
+
+                document.getElementById("welcomeText").innerText =
+                    "أنا هنا لأساعدك على الفهم والتعلّم، وسنكتشف الحل معا خطوة بخطوة";
+
+                document.getElementById("hintText").innerText =
+                    "أعطني تلميح";
+
+                document.getElementById("simpleText").innerText =
+                    "اشرح بطريقة أبسط";
+
+                document.getElementById("testText").innerText =
+                    "اختبرني";
+
+                document.getElementById("messageInput").placeholder =
+                    "اكتبي سؤالك هنا...";
+
+                document.getElementById("sendButton").innerText =
+                    "إرسال";
+
+                document.getElementById("backButton").innerText =
+                    "← تغيير المادة";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
