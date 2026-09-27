@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>المرحلة الثانوية | نمط</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eee5ff, #d8c5f2);
+            min-height: 100vh;
+            color: #4d3568;
+        }
+
+        .language-switch {
+            position: fixed;
+            top: 20px;
+            right: 25px;
+            z-index: 20;
+        }
+
+        .language-switch button {
+            border: none;
+            background: white;
+            color: #684094;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(82, 48, 120, 0.12);
+            transition: 0.2s;
+        }
+
+        .language-switch button:hover {
+            transform: translateY(-2px);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 50px 0;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.75);
+            border-radius: 30px;
+            padding: 35px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(80, 50, 110, 0.12);
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 42px;
+            color: #5b3b82;
+        }
+
+        .header p {
+            margin-top: 15px;
+            font-size: 20px;
+            color: #765d8e;
+        }
+
+        h2 {
+            text-align: center;
+            color: #5b3b82;
+            margin-bottom: 25px;
+        }
+
+        .grades {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .grade {
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.82);
+            border-radius: 25px;
+            padding: 35px 20px;
+            text-align: center;
+            color: #5b3b82;
+            box-shadow: 0 10px 25px rgba(80, 50, 110, 0.12);
+            transition: 0.3s;
+        }
+
+        .grade:hover {
+            transform: translateY(-7px);
+        }
+
+        .icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .grade h3 {
+            margin: 10px 0;
+            font-size: 23px;
+        }
+
+        .grade p {
+            color: #806a96;
+            font-size: 16px;
+        }
+
+        .back {
+            display: block;
+            width: fit-content;
+            margin: 40px auto 0;
+            padding: 13px 30px;
+            background: #7952a8;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 17px;
+        }
+
+        @media (max-width: 800px) {
+
+            .grades {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .grades {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="language-switch">
+        <button id="languageButton" onclick="toggleLanguage()">
+            🌐 English
+        </button>
+    </div>
+
+    <div class="container">
+
+        <div class="header">
+
+            <h1 id="mainTitle">المرحلة الثانوية</h1>
+
+            <p id="mainText">
+                اختيار صفك الدراسي وابدأ رحلة تعلّم تناسبك
+            </p>
+
+        </div>
+
+
+        <h2 id="sectionTitle">اختيار صفك الدراسي</h2>
+
+
+        <div class="grades">
+
+            <a href="assistant.html" class="grade">
+
+                <div class="icon"></div>
+
+                <h3 id="grade1">الصف الأول الثانوي</h3>
+
+
+            </a>
+
+
+            <a href="assistant.html" class="grade">
+
+                <div class="icon"></div>
+
+                <h3 id="grade2">الصف الثاني الثانوي</h3>
+
+
+            </a>
+
+
+            <a href="assistant.html" class="grade">
+
+                <div class="icon"></div>
+
+                <h3 id="grade3">الصف الثالث الثانوي</h3>
+
+
+            </a>
+
+        </div>
+
+
+        <a href="subjects.html" class="back" id="backButton">
+            ← العودة للمراحل
+        </a>
+
+    </div>
+
+
+    <script>
+
+        let isEnglish = false;
+
+        function toggleLanguage() {
+
+            isEnglish = !isEnglish;
+
+            const button = document.getElementById("languageButton");
+
+            if (isEnglish) {
+
+                document.documentElement.lang = "en";
+                document.documentElement.dir = "ltr";
+
+                button.innerText = "🌐 العربية";
+
+                document.getElementById("mainTitle").innerText =
+                    "High School";
+
+                document.getElementById("mainText").innerText =
+                    "Choose your grade and start a learning journey that suits you.";
+
+                document.getElementById("sectionTitle").innerText =
+                    "Choose your grade";
+
+                document.getElementById("grade1").innerText =
+                    "First High School";
+
+                document.getElementById("grade2").innerText =
+                    "Second High School";
+
+                document.getElementById("grade3").innerText =
+                    "Third High School";
+
+                document.getElementById("backButton").innerText =
+                    "← Back to Stages";
+
+            } else {
+
+                document.documentElement.lang = "ar";
+                document.documentElement.dir = "rtl";
+
+                button.innerText = "🌐 English";
+
+                document.getElementById("mainTitle").innerText =
+                    "المرحلة الثانوية";
+
+                document.getElementById("mainText").innerText =
+                    "اختيار صفك الدراسي وابدأ رحلة تعلّم تناسبك";
+
+                document.getElementById("sectionTitle").innerText =
+                    "اختيار صفك الدراسي";
+
+                document.getElementById("grade1").innerText =
+                    "الصف الأول الثانوي";
+
+                document.getElementById("grade2").innerText =
+                    "الصف الثاني الثانوي";
+
+                document.getElementById("grade3").innerText =
+                    "الصف الثالث الثانوي";
+
+                document.getElementById("backButton").innerText =
+                    "← العودة للمراحل";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
