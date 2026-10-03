@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>نمط - التواصل مع الأصدقاء</title>
+    <title>نمط - التواصل</title>
 
     <style>
 
@@ -21,11 +22,18 @@
             min-height: 100vh;
         }
 
+        button,
+        input {
+            font-family: Arial, sans-serif;
+        }
+
+        /* زر اللغة */
+
         .language-switch {
             position: fixed;
             top: 20px;
             right: 25px;
-            z-index: 20;
+            z-index: 100;
         }
 
         .language-switch button {
@@ -38,22 +46,21 @@
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(82, 48, 120, 0.12);
-            transition: 0.2s;
         }
 
-        .language-switch button:hover {
-            transform: translateY(-2px);
-        }
+        /* الصفحة */
 
         .page {
             min-height: 100vh;
-            padding: 40px 25px;
+            padding: 45px 25px;
         }
 
         .container {
             max-width: 1100px;
             margin: auto;
         }
+
+        /* العنوان */
 
         .header {
             text-align: center;
@@ -67,13 +74,15 @@
         }
 
         .header p {
-            font-size: 19px;
+            font-size: 18px;
             color: #70578c;
             margin-top: 15px;
         }
 
+        /* الصناديق */
+
         .box {
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.92);
             border-radius: 30px;
             padding: 35px;
             margin-bottom: 25px;
@@ -87,10 +96,12 @@
             margin-bottom: 25px;
         }
 
+        /* إضافة صديق */
+
         .add-friend {
             display: flex;
             gap: 12px;
-            max-width: 800px;
+            max-width: 850px;
             margin: auto;
         }
 
@@ -113,13 +124,36 @@
             border-radius: 20px;
             font-size: 16px;
             cursor: pointer;
-            transition: 0.3s;
         }
 
         .add-friend button:hover {
             background: #68458f;
-            transform: translateY(-2px);
         }
+
+        .friend-message {
+            display: none;
+            text-align: center;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 15px;
+            background: #e8f8ee;
+            color: #287348;
+            font-weight: bold;
+        }
+
+        /* الخصوصية */
+
+        .privacy {
+            text-align: center;
+            background: #eee5ff;
+            border-radius: 20px;
+            padding: 18px;
+            margin-top: 25px;
+            color: #6b5085;
+            line-height: 1.7;
+        }
+
+        /* الخيارات */
 
         .options {
             display: grid;
@@ -128,13 +162,13 @@
         }
 
         .option {
-            text-decoration: none;
-            display: block;
+            border: none;
             background: #f4edff;
             border-radius: 24px;
             padding: 25px;
             text-align: center;
             color: #5b3b82;
+            cursor: pointer;
             transition: 0.3s;
         }
 
@@ -158,15 +192,161 @@
             line-height: 1.7;
         }
 
-        .privacy {
-            text-align: center;
-            background: #eee5ff;
-            border-radius: 20px;
-            padding: 18px;
-            margin-top: 25px;
-            color: #6b5085;
-            line-height: 1.7;
+        /* الأقسام */
+
+        .section {
+            display: none;
         }
+
+        .section.active {
+            display: block;
+        }
+
+        /* المحادثة */
+
+        .chat-box {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 25px;
+            background: #f4edff;
+        }
+
+        .chat-back {
+            border: none;
+            background: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .chat-header h2 {
+            margin: 0;
+            text-align: right;
+        }
+
+        .chat-header p {
+            margin: 6px 0 0;
+            color: #765d8e;
+        }
+
+        .chat-messages {
+            min-height: 430px;
+            padding: 25px;
+            background: #faf8ff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .empty-chat {
+            text-align: center;
+            color: #765d8e;
+        }
+
+        .empty-icon {
+            font-size: 65px;
+            margin-bottom: 10px;
+        }
+
+        .empty-chat h3 {
+            color: #5b3b82;
+            margin-bottom: 8px;
+        }
+
+        .empty-chat p {
+            line-height: 1.8;
+        }
+
+        .chat-message {
+            max-width: 70%;
+            background: #7952a8;
+            color: white;
+            padding: 12px 17px;
+            border-radius: 18px 18px 4px 18px;
+            margin: 7px 0;
+            align-self: flex-start;
+            line-height: 1.6;
+        }
+
+        .chat-input-area {
+            display: flex;
+            gap: 10px;
+            padding: 18px;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: #f4edff;
+            padding: 15px 18px;
+            border-radius: 20px;
+            font-size: 16px;
+        }
+
+        .chat-input-area button {
+            border: none;
+            background: #7952a8;
+            color: white;
+            padding: 0 22px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* المجموعات */
+
+        .group-card {
+            background: #f4edff;
+            padding: 22px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        .group-card h3 {
+            color: #5b3b82;
+            margin-top: 0;
+        }
+
+        .action-button {
+            border: none;
+            background: #7952a8;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* التحديات */
+
+        .challenge-card {
+            background: #f4edff;
+            padding: 22px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .challenge-card h3 {
+            color: #5b3b82;
+            margin-top: 0;
+        }
+
+        /* زر الرجوع */
 
         .back {
             display: block;
@@ -175,9 +355,14 @@
             padding: 12px 25px;
             background: #7952a8;
             color: white;
+            border: none;
             text-decoration: none;
             border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
         }
+
+        /* الجوال */
 
         @media (max-width: 750px) {
 
@@ -201,140 +386,463 @@
                 padding: 14px;
             }
 
+            .chat-input-area {
+                flex-direction: column;
+            }
+
+            .chat-input-area button {
+                padding: 13px;
+            }
+
         }
 
     </style>
 
 </head>
 
+
 <body>
 
+
+    <!-- زر اللغة -->
+
     <div class="language-switch">
-        <button id="languageButton" onclick="toggleLanguage()">
+
+        <button
+            id="languageButton"
+            onclick="toggleLanguage()"
+        >
             🌐 English
         </button>
+
     </div>
+
 
     <div class="page">
 
         <div class="container">
 
-            <div class="header">
 
-                <h1 id="mainTitle">التواصل مع الأصدقاء 👥</h1>
+            <!-- ========================= -->
+            <!-- الصفحة الرئيسية -->
+            <!-- ========================= -->
 
-                <p id="mainText">
-                    التعلم مع أصدقائك، شارك الأفكار، وتعاون في رحلة التعلم
-                </p>
+            <div id="homeSection" class="section active">
+
+
+                <div class="header">
+
+                    <h1 id="mainTitle">
+                        التواصل مع الأصدقاء 👥
+                    </h1>
+
+                    <p id="mainText">
+                        التعلم مع أصدقائك، شارك الأفكار، وتعاون في رحلة التعلم
+                    </p>
+
+                </div>
+
+
+                <!-- إضافة صديق -->
+
+                <div class="box">
+
+                    <h2 id="addFriendTitle">
+                        ➕ إضافة صديق
+                    </h2>
+
+
+                    <div class="add-friend">
+
+                        <input
+                            id="emailInput"
+                            type="email"
+                            placeholder="📧 البريد الإلكتروني"
+                        >
+
+                        <input
+                            id="phoneInput"
+                            type="tel"
+                            placeholder="📱 رقم الجوال"
+                        >
+
+                        <button
+                            id="addButton"
+                            onclick="addFriend()"
+                        >
+                            إضافة
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="friendMessage"
+                        class="friend-message"
+                    ></div>
+
+
+                    <div
+                        id="privacyText"
+                        class="privacy"
+                    >
+
+                        🔒 معلومات التواصل خاصة، ولا تظهر للطلاب الآخرين.
+
+                    </div>
+
+                </div>
+
+
+                <!-- خيارات التواصل -->
+
+                <div class="box">
+
+                    <h2 id="optionsTitle">
+                        ماذا يمكنك أن تفعل مع أصدقائك؟
+                    </h2>
+
+
+                    <div class="options">
+
+
+                        <!-- المناقشة -->
+
+                        <button
+                            class="option"
+                            onclick="showSection('discussion')"
+                        >
+
+                            <div class="option-icon">
+                                💬
+                            </div>
+
+                            <h3 id="discussionTitle">
+                                مناقشة الأفكار
+                            </h3>
+
+                            <p id="discussionText">
+                                شارك أفكارك وناقش الدروس والأسئلة مع أصدقائك.
+                            </p>
+
+                        </button>
+
+
+                        <!-- المجموعات -->
+
+                        <button
+                            class="option"
+                            onclick="showSection('groups')"
+                        >
+
+                            <div class="option-icon">
+                                🤝
+                            </div>
+
+                            <h3 id="groupsTitle">
+                                مجموعات الدراسة
+                            </h3>
+
+                            <p id="groupsText">
+                                كوّن مجموعة للتعاون والمذاكرة والأنشطة التعليمية.
+                            </p>
+
+                        </button>
+
+
+                        <!-- التحديات -->
+
+                        <button
+                            class="option"
+                            onclick="showSection('challenges')"
+                        >
+
+                            <div class="option-icon">
+                                🏆
+                            </div>
+
+                            <h3 id="challengesTitle">
+                                التحديات التعليمية
+                            </h3>
+
+                            <p id="challengesText">
+                                شارك أصدقاءك تحديات تعليمية ممتعة وتعاونية.
+                            </p>
+
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="back"
+                    onclick="goHome()"
+                    id="homeBackButton"
+                >
+                    ← العودة للرئيسية
+                </button>
 
             </div>
 
 
-            <!-- إضافة صديق -->
+            <!-- ========================= -->
+            <!-- المحادثة -->
+            <!-- ========================= -->
 
-            <div class="box">
+            <div
+                id="discussionSection"
+                class="section"
+            >
 
-                <h2 id="addFriendTitle">➕ إضافة صديق</h2>
+                <div class="box chat-box">
 
-                <div class="add-friend">
 
-                    <input
-                        id="emailInput"
-                        type="email"
-                        placeholder="📧 البريد الإلكتروني"
+                    <div class="chat-header">
+
+                        <button
+                            class="chat-back"
+                            onclick="goHome()"
+                        >
+                            ←
+                        </button>
+
+
+                        <div>
+
+                            <h2>
+                                💬 مناقشة الأفكار
+                            </h2>
+
+                            <p>
+                                شارك أفكارك وتناقش مع أصدقائك
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- المحادثة فارغة -->
+
+                    <div
+                        id="chatMessages"
+                        class="chat-messages"
                     >
 
-                    <input
-                        id="phoneInput"
-                        type="tel"
-                        placeholder="📱 رقم الجوال"
-                    >
+                        <div class="empty-chat">
 
-                    <button id="addButton">
-                        إضافة
+                            <div class="empty-icon">
+                                💬
+                            </div>
+
+                            <h3>
+                                ابدئي المحادثة
+                            </h3>
+
+                            <p>
+                                لا توجد رسائل حتى الآن.<br>
+                                اكتب رسالة لبدء النقاش.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- كتابة الرسالة -->
+
+                    <div class="chat-input-area">
+
+                        <input
+                            id="chatInput"
+                            type="text"
+                            placeholder="اكتب رسالة..."
+                            onkeydown="handleChatKey(event)"
+                        >
+
+                        <button
+                            onclick="sendMessage()"
+                        >
+                            📤 إرسال
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- مجموعات الدراسة -->
+            <!-- ========================= -->
+
+            <div
+                id="groupsSection"
+                class="section"
+            >
+
+                <div class="box">
+
+                    <h2>
+                        🤝 مجموعات الدراسة
+                    </h2>
+
+
+                    <div class="group-card">
+
+                        <h3>
+                             مجموعة الرياضيات
+                        </h3>
+
+                        <p>
+                            مجموعة لمراجعة الرياضيات والمذاكرة مع الأصدقاء.
+                        </p>
+
+                        <button
+                            class="action-button"
+                            onclick="joinGroup(this)"
+                        >
+                            الانضمام للمجموعة
+                        </button>
+
+                    </div>
+
+
+                    <div class="group-card">
+
+                        <h3>
+                             مجموعة العلوم
+                        </h3>
+
+                        <p>
+                            ناقشوا التجارب والأسئلة العلمية معًا.
+                        </p>
+
+                        <button
+                            class="action-button"
+                            onclick="joinGroup(this)"
+                        >
+                            الانضمام للمجموعة
+                        </button>
+
+                    </div>
+
+
+                    <div class="group-card">
+
+                        <h3>
+                            🇬🇧 مجموعة اللغة الإنجليزية
+                        </h3>
+
+                        <p>
+                            تدربوا على الكلمات والقواعد والمحادثة.
+                        </p>
+
+                        <button
+                            class="action-button"
+                            onclick="joinGroup(this)"
+                        >
+                            الانضمام للمجموعة
+                        </button>
+
+                    </div>
+
+
+                    <button
+                        class="back"
+                        onclick="goHome()"
+                    >
+                        ← العودة
                     </button>
 
                 </div>
 
-                <div class="privacy" id="privacyText">
+            </div>
 
-                    🔒 معلومات التواصل خاصة، ولا تظهر للطلاب الآخرين.
+
+            <!-- ========================= -->
+            <!-- التحديات -->
+            <!-- ========================= -->
+
+            <div
+                id="challengesSection"
+                class="section"
+            >
+
+                <div class="box">
+
+                    <h2>
+                        🏆 التحديات التعليمية
+                    </h2>
+
+
+                    <div
+                        class="challenge-card"
+                        onclick="startChallenge('الرياضيات')"
+                    >
+
+                        <h3>
+                             تحدي الرياضيات
+                        </h3>
+
+                        <p>
+                            اختبر معلوماتك في سؤال رياضي سريع.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="challenge-card"
+                        onclick="startChallenge('العلوم')"
+                    >
+
+                        <h3>
+                             تحدي العلوم
+                        </h3>
+
+                        <p>
+                            سؤال علمي قصير مع أصدقائك.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="challenge-card"
+                        onclick="startChallenge('اللغة الإنجليزية')"
+                    >
+
+                        <h3>
+                            🇬🇧 تحدي اللغة الإنجليزية
+                        </h3>
+
+                        <p>
+                            اختبر معرفتك بالكلمات الإنجليزية.
+                        </p>
+
+                    </div>
+
+
+                    <div id="challengeResult"></div>
+
+
+                    <button
+                        class="back"
+                        onclick="goHome()"
+                    >
+                        ← العودة
+                    </button>
 
                 </div>
 
             </div>
 
-
-            <!-- خيارات التواصل -->
-
-            <div class="box">
-
-                <h2 id="optionsTitle">
-                    ماذا يمكنك أن تفعل مع أصدقائك؟
-                </h2>
-
-                <div class="options">
-
-
-                    <!-- مناقشة الأفكار -->
-
-                    <a href="مناقشة.html" class="option">
-
-                        <div class="option-icon">💬</div>
-
-                        <h3 id="discussionTitle">
-                            مناقشة الأفكار
-                        </h3>
-
-                        <p id="discussionText">
-                            شاركي أفكارك وناقشي الدروس والأسئلة مع أصدقائك.
-                        </p>
-
-                    </a>
-
-
-                    <!-- مجموعات الدراسة -->
-
-                    <a href="قروب.html" class="option">
-
-                        <div class="option-icon">🤝</div>
-
-                        <h3 id="groupsTitle">
-                            مجموعات الدراسة
-                        </h3>
-
-                        <p id="groupsText">
-                            كوّن مجموعة للتعاون والمذاكرة والأنشطة التعليمية.
-                        </p>
-
-                    </a>
-
-
-                    <!-- التحديات التعليمية -->
-
-                    <a href="تحديات.html" class="option">
-
-                        <div class="option-icon">🏆</div>
-
-                        <h3 id="challengesTitle">
-                            التحديات التعليمية
-                        </h3>
-
-                        <p id="challengesText">
-                            شارك أصدقاءك تحديات تعليمية ممتعة وتعاونية.
-                        </p>
-
-                    </a>
-
-
-                </div>
-
-            </div>
-
-
-            <a href="home.html" class="back" id="backButton">
-                ← العودة للرئيسية
-            </a>
 
         </div>
 
@@ -343,117 +851,362 @@
 
     <script>
 
+
+        /* ========================= */
+        /* إضافة صديق */
+        /* ========================= */
+
+        function addFriend() {
+
+            const email =
+                document.getElementById("emailInput").value.trim();
+
+            const phone =
+                document.getElementById("phoneInput").value.trim();
+
+            const message =
+                document.getElementById("friendMessage");
+
+
+            if (email === "" && phone === "") {
+
+                message.style.display = "block";
+
+                message.innerText =
+                    "⚠️ اكتب البريد الإلكتروني أو رقم الجوال أولاً.";
+
+                return;
+
+            }
+
+
+            message.style.display = "block";
+
+            message.innerText =
+                "✅ تمت إضافة الصديق بنجاح!";
+
+        }
+
+
+        /* ========================= */
+        /* فتح الأقسام */
+        /* ========================= */
+
+        function showSection(section) {
+
+            document
+                .querySelectorAll(".section")
+                .forEach(function(item) {
+
+                    item.classList.remove("active");
+
+                });
+
+
+            document
+                .getElementById(section + "Section")
+                .classList.add("active");
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* ========================= */
+        /* العودة للرئيسية */
+        /* ========================= */
+
+        function goHome() {
+
+            document
+                .querySelectorAll(".section")
+                .forEach(function(item) {
+
+                    item.classList.remove("active");
+
+                });
+
+
+            document
+                .getElementById("homeSection")
+                .classList.add("active");
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* ========================= */
+        /* إرسال رسالة */
+        /* ========================= */
+
+        function sendMessage() {
+
+            const input =
+                document.getElementById("chatInput");
+
+            const messages =
+                document.getElementById("chatMessages");
+
+
+            const text =
+                input.value.trim();
+
+
+            if (text === "") {
+                return;
+            }
+
+
+            const emptyChat =
+                messages.querySelector(".empty-chat");
+
+
+            if (emptyChat) {
+                emptyChat.remove();
+            }
+
+
+            const message =
+                document.createElement("div");
+
+
+            message.className =
+                "chat-message";
+
+
+            message.innerText =
+                text;
+
+
+            messages.appendChild(message);
+
+
+            input.value = "";
+
+
+            messages.scrollTop =
+                messages.scrollHeight;
+
+        }
+
+
+        /* إرسال بالضغط على Enter */
+
+        function handleChatKey(event) {
+
+            if (event.key === "Enter") {
+
+                sendMessage();
+
+            }
+
+        }
+
+
+        /* ========================= */
+        /* الانضمام للمجموعة */
+        /* ========================= */
+
+        function joinGroup(button) {
+
+            button.innerText =
+                "✅ تم الانضمام";
+
+            button.disabled =
+                true;
+
+        }
+
+
+        /* ========================= */
+        /* التحديات */
+        /* ========================= */
+
+        function startChallenge(subject) {
+
+            const result =
+                document.getElementById("challengeResult");
+
+
+            result.innerHTML = `
+
+                <div class="group-card">
+
+                    <h3>
+                        🎯 تحدي ${subject}
+                    </h3>
+
+                    <p>
+                        استعداد! سيتم عرض الأسئلة هنا.
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* ========================= */
+        /* اللغة */
+        /* ========================= */
+
         let isEnglish = false;
+
 
         function toggleLanguage() {
 
-            isEnglish = !isEnglish;
+            isEnglish =
+                !isEnglish;
 
-            const button = document.getElementById("languageButton");
+
+            const button =
+                document.getElementById("languageButton");
+
 
             if (isEnglish) {
 
                 document.documentElement.lang = "en";
+
                 document.documentElement.dir = "ltr";
 
-                button.innerText = "🌐 العربية";
+
+                button.innerText =
+                    "🌐 العربية";
+
 
                 document.getElementById("mainTitle").innerText =
                     "Connect with Friends 👥";
 
+
                 document.getElementById("mainText").innerText =
                     "Learn with your friends, share ideas, and collaborate on your learning journey.";
+
 
                 document.getElementById("addFriendTitle").innerText =
                     "➕ Add a Friend";
 
+
                 document.getElementById("emailInput").placeholder =
                     "📧 Email Address";
+
 
                 document.getElementById("phoneInput").placeholder =
                     "📱 Phone Number";
 
+
                 document.getElementById("addButton").innerText =
                     "Add";
+
 
                 document.getElementById("privacyText").innerText =
                     "🔒 Contact information is private and is not visible to other students.";
 
+
                 document.getElementById("optionsTitle").innerText =
                     "What can you do with your friends?";
+
 
                 document.getElementById("discussionTitle").innerText =
                     "Discuss Ideas";
 
+
                 document.getElementById("discussionText").innerText =
                     "Share your ideas and discuss lessons and questions with your friends.";
+
 
                 document.getElementById("groupsTitle").innerText =
                     "Study Groups";
 
+
                 document.getElementById("groupsText").innerText =
                     "Create a group for collaboration, studying, and educational activities.";
+
 
                 document.getElementById("challengesTitle").innerText =
                     "Educational Challenges";
 
+
                 document.getElementById("challengesText").innerText =
                     "Take part in fun and collaborative educational challenges with your friends.";
 
-                document.getElementById("backButton").innerText =
-                    "← Back to Home";
+            }
 
-            } else {
+
+            else {
 
                 document.documentElement.lang = "ar";
+
                 document.documentElement.dir = "rtl";
 
-                button.innerText = "🌐 English";
+
+                button.innerText =
+                    "🌐 English";
+
 
                 document.getElementById("mainTitle").innerText =
                     "التواصل مع الأصدقاء 👥";
 
+
                 document.getElementById("mainText").innerText =
                     "التعلم مع أصدقائك، شارك الأفكار، وتعاون في رحلة التعلم";
+
 
                 document.getElementById("addFriendTitle").innerText =
                     "➕ إضافة صديق";
 
+
                 document.getElementById("emailInput").placeholder =
                     "📧 البريد الإلكتروني";
+
 
                 document.getElementById("phoneInput").placeholder =
                     "📱 رقم الجوال";
 
+
                 document.getElementById("addButton").innerText =
                     "إضافة";
+
 
                 document.getElementById("privacyText").innerText =
                     "🔒 معلومات التواصل خاصة، ولا تظهر للطلاب الآخرين.";
 
+
                 document.getElementById("optionsTitle").innerText =
                     "ماذا يمكنك أن تفعل مع أصدقائك؟";
+
 
                 document.getElementById("discussionTitle").innerText =
                     "مناقشة الأفكار";
 
+
                 document.getElementById("discussionText").innerText =
-                    "شاركي أفكارك وناقشي الدروس والأسئلة مع أصدقائك.";
+                    "شارك أفكارك وناقش الدروس والأسئلة مع أصدقائك.";
+
 
                 document.getElementById("groupsTitle").innerText =
                     "مجموعات الدراسة";
 
+
                 document.getElementById("groupsText").innerText =
                     "كوّن مجموعة للتعاون والمذاكرة والأنشطة التعليمية.";
+
 
                 document.getElementById("challengesTitle").innerText =
                     "التحديات التعليمية";
 
+
                 document.getElementById("challengesText").innerText =
                     "شارك أصدقاءك تحديات تعليمية ممتعة وتعاونية.";
-
-                document.getElementById("backButton").innerText =
-                    "← العودة للرئيسية";
 
             }
 
@@ -464,3 +1217,4 @@
 </body>
 
 </html>
+```
